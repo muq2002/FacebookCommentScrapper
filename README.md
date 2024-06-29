@@ -1,6 +1,7 @@
 # Facebook Comments Extractor Chrome Extension
 
 ## Overview
+![Screenshot to results](https://raw.githubusercontent.com/muq2002/FacebookCommentScrapper/main/planning/Screenshot%202024-06-29%20113553.png?token=GHSAT0AAAAAACPH2RVNDUKR5QGJOEFNOLRMZT7Y6TA)
 The Facebook Comments Extractor is a Chrome extension designed to help users extract comments from Facebook posts effortlessly. This tool is especially useful for researchers, data analysts, and developers who want to use these comments for Natural Language Processing (NLP) tasks such as sentiment analysis, topic modeling, and more.
 
 ## Features
