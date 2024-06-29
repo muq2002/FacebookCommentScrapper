@@ -1,17 +1,21 @@
 {
-    "manifest_version": 3,
-    "name": "Enhanced Web Scraper",
-    "version": "1.1",
-    "description": "Extracts links, divs, and elements with aria-labels from the current webpage",
-    "permissions": [
-      "activeTab",
-      "scripting"
-    ],
-    "action": {
-      "default_title": "Scrape Page"
-    },
-    "background": {
-      "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "Facebook Comments Scrapper",
+  "version": "1.5",
+  "description": "Extracts links, divs, and elements with aria-labels from the current webpage",
+  "host_permissions": ["https://www.facebook.com/*"],
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_title": "Scrape Page"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/*"],
+      "js": ["content_script.js"]
     }
-  }
-  
+  ]
+}
