@@ -1,4 +1,11 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  function getPersonName(text) {
+    return text.substr(0, text.search("منذ"));
+  }
+
+  function getCommentAt(text) {
+    return text.substr(text.search("منذ"));
+  }
   if (message.action === "displayResults") {
     const results = message.results;
     const resultsDiv = document.getElementById("results");
@@ -11,11 +18,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
               .map(
                 (el) => `
               <li class="comment-item">
-                <div class="comment-by"><strong>Commented By:</strong> ${el.ariaLabel
-                  .toString()
-                  .replace("تعليق من", "")}</div>
+                <div class="comment-by"><strong>Commented By:</strong> ${getPersonName(
+                  el.ariaLabel.toString().replace("تعليق من", "")
+                )}</div>
+                 <div class="comment-by"><strong>Commented at:</strong> ${getCommentAt(
+                   el.ariaLabel.toString().replace("تعليق من", "")
+                 )}</div>
                 <div class="comment-text"><strong>Comment:</strong> ${
-                  el.dirDivText || "[No Dir Div Text, maybe emoji comment]"
+                  el.dirDivText || "Emoji comment"
                 }</div>
                 <br/>
               </li>
