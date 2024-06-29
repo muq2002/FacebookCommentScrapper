@@ -27,6 +27,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 <div class="comment-text"><strong>Comment:</strong> ${
                   el.dirDivText || "Emoji comment"
                 }</div>
+                 <div class="comment-text"><strong>Link:</strong> <a href='${
+                   el.link.href || ""}' target="blank">${el.link.text || "Profile Link"}</a></div>
                 <br/>
               </li>
             `
