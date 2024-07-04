@@ -16,14 +16,14 @@ chrome.action.onClicked.addListener((tab) => {
     // Optionally, you can show a notification to the user
     chrome.action.setPopup({
       tabId: tab.id,
-      popup: "popup.html",
+      popup: "public/popup.html",
     });
   }
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "openResultsTab") {
-    chrome.tabs.create({ url: "results.html" }, (newTab) => {
+    chrome.tabs.create({ url: "public/results.html" }, (newTab) => {
       chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
         if (tabId === newTab.id && info.status === "complete") {
           chrome.tabs.onUpdated.removeListener(listener);

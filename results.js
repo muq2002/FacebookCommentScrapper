@@ -1,11 +1,7 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  function getPersonName(text) {
-    return text.substr(0, text.search("منذ"));
-  }
+import { exportToCSV, getCommentAt, getPersonName } from "./helper_functions";
 
-  function getCommentAt(text) {
-    return text.substr(text.search("منذ"));
-  }
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "displayResults") {
     const results = message.results;
     const resultsDiv = document.getElementById("results");
@@ -13,6 +9,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     resultsDiv.innerHTML = `
         <div class="section">
           <h2>Comments (${results.commentedFromElements.length})</h2>
+          <button id="exportCSV">Export as CSV</button>
           <ul class="comments-list">
             ${results.commentedFromElements
               .map(
@@ -28,7 +25,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                   el.dirDivText || "Emoji comment"
                 }</div>
                  <div class="comment-text"><strong>Link:</strong> <a href='${
-                   el.link.href || ""}' target="blank">${el.link.text || "Profile Link"}</a></div>
+                   el.link.href || ""
+                 }' target="blank">${el.link.text || "Profile Link"}</a></div>
                 <br/>
               </li>
             `
@@ -37,5 +35,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           </ul>
         </div>
       `;
+
+    document.getElementById("exportCSV").addEventListener("click", () => {
+      exportToCSV(results.commentedFromElements);
+    });
   }
 });
+
