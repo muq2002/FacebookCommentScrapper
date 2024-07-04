@@ -1,6 +1,3 @@
-import { exportToCSV, getCommentAt, getPersonName } from "./helper_functions";
-
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "displayResults") {
     const results = message.results;
